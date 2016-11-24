@@ -23,7 +23,7 @@ import {
  * CREATE       => POST http://my.api.url/posts/123
  * DELETE       => DELETE http://my.api.url/posts/123
  */
-export default (apiUrl) => {
+export default (apiUrl, httpClient = fetchJson) => {
     /**
      * @param {String} type One of the constants appearing at the top if this file, e.g. 'UPDATE'
      * @param {String} resource Name of the resource to fetch, e.g. 'posts'
@@ -88,6 +88,9 @@ export default (apiUrl) => {
         const { headers, json } = response;
         switch (type) {
         case GET_LIST:
+            if (!headers.has('x-total-count')) {
+                throw new Error('The X-Total-Count header is missing in the HTTP Response. This header is necessary for pagination. If you are using CORS, did you declare X-Total-Count in the Access-Control-Allow-Headers header?');
+            }
             return {
                 data: json.map(x => x),
                 total: parseInt(headers.get('x-total-count').split('/').pop(), 10),
@@ -108,11 +111,11 @@ export default (apiUrl) => {
     return (type, resource, params) => {
         // json-server doesn't handle WHERE IN requests, so we fallback to calling GET_ONE n times instead
         if (type === GET_MANY) {
-            return Promise.all(params.ids.map(id => fetchJson(`${apiUrl}/${resource}/${id}`)))
+            return Promise.all(params.ids.map(id => httpClient(`${apiUrl}/${resource}/${id}`)))
                 .then(responses => responses.map(response => response.json));
         }
         const { url, options } = convertRESTRequestToHTTP(type, resource, params);
-        return fetchJson(url, options)
+        return httpClient(url, options)
             .then(response => convertHTTPResponseToREST(response, type, resource, params));
     };
 };

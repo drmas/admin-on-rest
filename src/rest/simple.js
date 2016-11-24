@@ -24,7 +24,7 @@ import {
  * CREATE       => POST http://my.api.url/posts/123
  * DELETE       => DELETE http://my.api.url/posts/123
  */
-export default (apiUrl) => {
+export default (apiUrl, httpClient = fetchJson) => {
     /**
      * @param {String} type One of the constants appearing at the top if this file, e.g. 'UPDATE'
      * @param {String} resource Name of the resource to fetch, e.g. 'posts'
@@ -40,7 +40,7 @@ export default (apiUrl) => {
             const { field, order } = params.sort;
             const query = {
                 sort: JSON.stringify([field, order]),
-                range: JSON.stringify([(page - 1) * perPage, page * perPage - 1]),
+                range: JSON.stringify([(page - 1) * perPage, (page * perPage) - 1]),
                 filter: JSON.stringify(params.filter),
             };
             url = `${apiUrl}/${resource}?${queryParameters(query)}`;
@@ -101,6 +101,9 @@ export default (apiUrl) => {
         const { headers, json } = response;
         switch (type) {
         case GET_LIST:
+            if (!headers.has('content-range')) {
+                throw new Error('The Content-Range header is missing in the HTTP Response. This header is necessary for pagination. If you are using CORS, did you declare Content-Range in the Access-Control-Allow-Headers header?');
+            }
             return {
                 data: json.map(x => x),
                 total: parseInt(headers.get('content-range').split('/').pop(), 10),
@@ -120,7 +123,7 @@ export default (apiUrl) => {
      */
     return (type, resource, params) => {
         const { url, options } = convertRESTRequestToHTTP(type, resource, params);
-        return fetchJson(url, options)
+        return httpClient(url, options)
             .then(response => convertHTTPResponseToREST(response, type, resource, params));
     };
 };
