@@ -6,6 +6,7 @@ import Title from '../layout/Title';
 import ListButton from '../button/ListButton';
 import { crudCreate as crudCreateAction } from '../../actions/dataActions';
 import RecordForm from './RecordForm'; // eslint-disable-line import/no-named-as-default
+import {isSmallScreen} from '../../util/window'
 
 class Create extends Component {
     getBasePath() {
@@ -19,7 +20,7 @@ class Create extends Component {
         const { title, children, isLoading, resource, validation } = this.props;
         const basePath = this.getBasePath();
         return (
-            <Card style={{ margin: '2em', opacity: isLoading ? 0.8 : 1 }}>
+            <Card style={{ margin: isSmallScreen() ? '0.5em' : '2em', opacity: isLoading ? 0.8 : 1 }}>
                 <CardActions style={{ zIndex: 2, display: 'inline-block', float: 'right' }}>
                     <ListButton basePath={basePath} />
                 </CardActions>

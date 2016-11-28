@@ -13,6 +13,7 @@ import Pagination from './Pagination';
 import CreateButton from '../button/CreateButton';
 import { crudGetList as crudGetListAction } from '../../actions/dataActions';
 import { changeListParams as changeListParamsAction } from '../../actions/listActions';
+import {isSmallScreen} from '../../util/window';
 
 const filterFormName = 'filterForm';
 
@@ -100,13 +101,13 @@ export class List extends Component {
     }
 
     render() {
-        const { filter, resource, hasCreate, title, data, ids, total, children, isLoading } = this.props;
+        const {filter, resource, hasCreate, title, data, ids, total, children, isLoading } = this.props;
         const query = this.getQuery();
         const filterValues = query.filter;
         const basePath = this.getBasePath();
         return (
-            <Card style={{ margin: '2em', opacity: isLoading ? 0.8 : 1 }}>
-                <CardActions style={{ zIndex: 2, display: 'inline-block', float: 'right' }}>
+            <Card style={{ margin: isSmallScreen() ? '0.5em' : '2em', opacity: isLoading ? 0.8 : 1 }}>
+                <CardActions style={{ zIndex: 2, display: 'flex', flexWrap: 'wrap', float: 'right' }}>
                     {filter && React.createElement(filter, {
                         resource,
                         showFilter: this.showFilter,

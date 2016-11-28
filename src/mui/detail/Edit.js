@@ -6,6 +6,7 @@ import Title from '../layout/Title';
 import { ListButton, DeleteButton, ShowButton } from '../button';
 import { crudGetOne as crudGetOneAction, crudUpdate as crudUpdateAction } from '../../actions/dataActions';
 import RecordForm from './RecordForm'; // eslint-disable-line import/no-named-as-default
+import {isSmallScreen} from '../../util/window'
 
 /**
  * Turns a children data structure (either single child or array of children) into an array.
@@ -59,7 +60,7 @@ export class Edit extends Component {
         const basePath = this.getBasePath();
 
         return (
-            <Card style={{ margin: '2em', opacity: isLoading ? 0.8 : 1 }}>
+            <Card style={{ margin: isSmallScreen() ? '0.5em' : '2em', opacity: isLoading ? 0.8 : 1 }}>
                 <CardActions style={{ zIndex: 2, display: 'inline-block', float: 'right' }}>
                     {hasShow && <ShowButton basePath={basePath} record={data} />}
                     <ListButton basePath={basePath} />
