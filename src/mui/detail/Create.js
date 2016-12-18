@@ -16,7 +16,7 @@ class Create extends Component {
     }
 
     handleSubmit = (record) => {
-        this.props.push(this.getBasePath())
+        this.props.crudCreate(this.props.resource, record, this.getBasePath());
     } 
 
     render() {
