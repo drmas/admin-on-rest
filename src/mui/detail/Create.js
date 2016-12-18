@@ -7,14 +7,17 @@ import ListButton from '../button/ListButton';
 import { crudCreate as crudCreateAction } from '../../actions/dataActions';
 import RecordForm from './RecordForm'; // eslint-disable-line import/no-named-as-default
 import {isSmallScreen} from '../../util/window'
-
+import {push} from 'react-router-redux'
+ 
 class Create extends Component {
     getBasePath() {
         const { location } = this.props;
         return location.pathname.split('/').slice(0, -1).join('/');
     }
 
-    handleSubmit = (record) => this.props.crudCreate(this.props.resource, record, this.getBasePath());
+    handleSubmit = (record) => {
+        this.props.push(this.getBasePath())
+    } 
 
     render() {
         const { title, children, isLoading, resource, validation } = this.props;
@@ -62,5 +65,5 @@ function mapStateToProps(state) {
 
 export default connect(
     mapStateToProps,
-    { crudCreate: crudCreateAction },
+    { crudCreate: crudCreateAction, push: url => push(url) },
 )(Create);
