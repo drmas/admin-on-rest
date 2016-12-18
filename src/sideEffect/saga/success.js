@@ -16,7 +16,7 @@ export default (type, resource, payload, response) => {
     case CRUD_CREATE:
         return [
             showNotification('Element created'),
-            push(`${payload.basePath}),
+            push(`${payload.basePath}`),
         ];
     case CRUD_DELETE:
         return [
