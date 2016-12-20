@@ -80,7 +80,7 @@ export const RecordForm = ({ children, handleSubmit, record, resource, basePath 
         </div>
         <Toolbar>
             <ToolbarGroup>
-                <SaveButton />
+                <SaveButton lang={lang}  />
             </ToolbarGroup>
         </Toolbar>
     </form>

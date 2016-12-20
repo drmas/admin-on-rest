@@ -115,7 +115,7 @@ export class List extends Component {
                         filterValues,
                         context: 'button',
                     })}
-                    {hasCreate && <CreateButton basePath={basePath} />}
+                    {hasCreate && <CreateButton lang={lang} basePath={basePath} />}
                     <FlatButton primary label={lang && lang=="ar" ? "تحديث" : "Refresh"} onClick={this.refresh} icon={<NavigationRefresh />} />
                 </CardActions>
                 <CardTitle title={<Title title={title} defaultTitle={`${inflection.humanize(inflection.pluralize(resource))} ${lang && lang=="ar" ? "قائمة" : "List"}`} />} />
