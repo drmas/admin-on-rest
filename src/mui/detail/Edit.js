@@ -62,9 +62,9 @@ export class Edit extends Component {
         return (
             <Card style={{ margin: isSmallScreen() ? '0.5em' : '2em', opacity: isLoading ? 0.8 : 1 }}>
                 <CardActions style={{ zIndex: 2, display: 'inline-block', float: 'right' }}>
-                    {hasShow && <ShowButton basePath={basePath} record={data} />}
-                    <ListButton basePath={basePath} />
-                    {hasDelete && <DeleteButton basePath={basePath} record={data} />}
+                    {hasShow && <ShowButton lang={lang} basePath={basePath} record={data} />}
+                    <ListButton lang={lang} basePath={basePath} />
+                    {hasDelete && <DeleteButton lang={lang} basePath={basePath} record={data} />}
                 </CardActions>
                 <CardTitle title={<Title title={title} record={data} defaultTitle={`${inflection.humanize(inflection.singularize(resource))} #${id}`} />} />
                 {data && <RecordForm

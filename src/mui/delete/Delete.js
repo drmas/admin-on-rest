@@ -42,21 +42,21 @@ class Delete extends Component {
     }
 
     render() {
-        const { title, id, data, isLoading, resource } = this.props;
+        const { title, id, data, isLoading, resource, lang } = this.props;
         const basePath = this.getBasePath();
         return (
             <Card style={{ margin: '2em', opacity: isLoading ? .8 : 1 }}>
                 <CardActions style={{ zIndex: 2, display: 'inline-block', float: 'right' }}>
-                    <ListButton basePath={basePath} />
+                    <ListButton lang={lang} basePath={basePath} />
                 </CardActions>
-                <CardTitle title={<Title title={title} record={data} defaultTitle={`Delete ${inflection.humanize(inflection.singularize(resource))} #${id}`} />} />
+                <CardTitle title={<Title title={title} record={data} defaultTitle={`${lang && lang == "ar"? "حذف" :"Delete"} ${inflection.humanize(inflection.singularize(resource))} #${id}`} />} />
                 <form onSubmit={this.handleSubmit}>
-                    <CardText>Are you sure ?</CardText>
+                    <CardText>{lang && lang == "ar"? "هل أنت متأكد" :"Are you sure ?"}</CardText>
                     <Toolbar>
                         <ToolbarGroup>
                             <RaisedButton
                                 type="submit"
-                                label="Yes"
+                                label={lang && lang == "ar"? "نعم" :"Yes"}
                                 icon={<ActionCheck />}
                                 primary
                                 style={{
@@ -65,7 +65,7 @@ class Delete extends Component {
                                 }}
                             />
                             <RaisedButton
-                                label="No"
+                                label={lang && lang == "ar"? "لا" :"No"}
                                 icon={<AlertError />}
                                 onClick={this.goBack}
                                 style={{

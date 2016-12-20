@@ -2,9 +2,9 @@ import React from 'react';
 import RaisedButton from 'material-ui/RaisedButton';
 import ContentSave from 'material-ui/svg-icons/content/save';
 
-const SaveButton = () => <RaisedButton
+const SaveButton = ({lang = ""}) => <RaisedButton
     type="submit"
-    label="Save"
+    label={lang && lang == "ar"? "حفظ" :"Save"}
     icon={<ContentSave />}
     primary
     style={{

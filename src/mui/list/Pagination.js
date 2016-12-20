@@ -94,11 +94,11 @@ export class Pagination extends Component {
                 {nbPages > 1 &&
                     <ToolbarGroup>
                     {page > 1 &&
-                        <FlatButton primary key="prev" label="Prev" icon={<ChevronLeft />} onClick={this.prevPage} style={buttonStyle} />
+                        <FlatButton primary key="prev" label={lang && lang == "ar"? "السابق" :"Prev"} icon={<ChevronLeft />} onClick={this.prevPage} style={buttonStyle} />
                     }
                     {this.renderPageNums()}
                     {page !== nbPages &&
-                        <FlatButton primary key="next" label="Next" icon={<ChevronRight />} labelPosition="before" onClick={this.nextPage} style={buttonStyle} />
+                        <FlatButton primary key="next" label={lang && lang == "ar"? "التالي" :"Next"} icon={<ChevronRight />} labelPosition="before" onClick={this.nextPage} style={buttonStyle} />
                     }
                     </ToolbarGroup>
                 }
