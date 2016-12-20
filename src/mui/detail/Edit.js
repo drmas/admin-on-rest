@@ -56,7 +56,7 @@ export class Edit extends Component {
     }
 
     render() {
-        const { title, children, id, data, isLoading, resource, hasDelete, hasShow, validation } = this.props;
+        const { title, children, id, data, isLoading, resource, hasDelete, hasShow, validation, lang } = this.props;
         const basePath = this.getBasePath();
 
         return (
@@ -68,6 +68,7 @@ export class Edit extends Component {
                 </CardActions>
                 <CardTitle title={<Title title={title} record={data} defaultTitle={`${inflection.humanize(inflection.singularize(resource))} #${id}`} />} />
                 {data && <RecordForm
+                    lang={lang}
                     onSubmit={this.handleSubmit}
                     record={data}
                     resource={resource}

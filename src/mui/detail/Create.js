@@ -30,6 +30,7 @@ class Create extends Component {
                 </CardActions>
                 <CardTitle title={<Title title={title} defaultTitle={`${lang && lang == "ar"? "إنشاء" :"Create"} ${inflection.humanize(inflection.singularize(resource))}`} />} />
                 <RecordForm
+                    lang={lang}
                     onSubmit={this.handleSubmit}
                     resource={resource}
                     basePath={basePath}

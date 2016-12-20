@@ -50,7 +50,7 @@ export const validateForm = (values, { children, validation }) => {
     return errors;
 };
 
-export const RecordForm = ({ children, handleSubmit, record, resource, basePath }) => (
+export const RecordForm = ({ children, handleSubmit, record, resource, basePath, lang }) => (
     <form onSubmit={handleSubmit}>
         <div style={{ padding: '0 1em 1em 1em' }}>
             {React.Children.map(children, input => (
