@@ -101,7 +101,7 @@ export class List extends Component {
     }
 
     render() {
-        const {filter, resource, hasCreate, title, data, ids, total, children, isLoading } = this.props;
+        const {filter, resource, hasCreate, title, data, ids, total, children, isLoading, lang } = this.props;
         const query = this.getQuery();
         const filterValues = query.filter;
         const basePath = this.getBasePath();
@@ -116,9 +116,9 @@ export class List extends Component {
                         context: 'button',
                     })}
                     {hasCreate && <CreateButton basePath={basePath} />}
-                    <FlatButton primary label="Refresh" onClick={this.refresh} icon={<NavigationRefresh />} />
+                    <FlatButton primary label={lang && lang=="ar" ? "تحديث" : "Refresh"} onClick={this.refresh} icon={<NavigationRefresh />} />
                 </CardActions>
-                <CardTitle title={<Title title={title} defaultTitle={`${inflection.humanize(inflection.pluralize(resource))} List`} />} />
+                <CardTitle title={<Title title={title} defaultTitle={`${inflection.humanize(inflection.pluralize(resource))} ${lang && lang=="ar" ? "قائمة" : "List"}`} />} />
                 {filter && React.createElement(filter, {
                     resource,
                     hideFilter: this.hideFilter,

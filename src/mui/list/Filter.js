@@ -2,7 +2,7 @@ import React, { PropTypes } from 'react';
 import FilterForm from './FilterForm';
 import FilterButton from './FilterButton';
 
-const Filter = ({ resource, context, children, showFilter, hideFilter, displayedFilters, filterValues }) => (
+const Filter = ({ resource, context, children, showFilter, hideFilter, displayedFilters, filterValues, lang='' }) => (
     context === 'form' ?
         <FilterForm
             resource={resource}
@@ -13,6 +13,7 @@ const Filter = ({ resource, context, children, showFilter, hideFilter, displayed
         /> :
         <FilterButton
             resource={resource}
+            lang={lang}
             filters={React.Children.toArray(children)}
             showFilter={showFilter}
             displayedFilters={displayedFilters}

@@ -52,8 +52,9 @@ export class FilterButton extends Component {
 
     render() {
         const hiddenFilters = this.getHiddenFilters();
+        const { lang } = this.props;
         return (hiddenFilters.length > 0 && <span>
-            <FlatButton primary label="Add Filter" icon={<ContentFilter />} onTouchTap={this.handleTouchTap} />
+            <FlatButton primary label={lang && lang=="ar" ? "إضافة فلتر" : "Add Filter"} icon={<ContentFilter />} onTouchTap={this.handleTouchTap} />
             <Popover
                 open={this.state.open}
                 anchorEl={this.state.anchorEl}
