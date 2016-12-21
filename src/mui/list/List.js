@@ -107,7 +107,7 @@ export class List extends Component {
         const basePath = this.getBasePath();
         return (
             <Card style={{ margin: isSmallScreen() ? '0.5em' : '2em', opacity: isLoading ? 0.8 : 1 }}>
-                <CardActions style={{ zIndex: 2, display: 'flex', flexWrap: 'wrap', float: 'right' }}>
+                <CardActions style={{ zIndex: 2, display: 'flex', flexWrap: 'wrap', float: lang && lang == "ar" ? 'left' :'right'  }}>
                     {filter && React.createElement(filter, {
                         resource,
                         showFilter: this.showFilter,
