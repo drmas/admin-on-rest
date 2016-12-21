@@ -21,14 +21,14 @@ class Create extends Component {
     } 
 
     render() {
-        const { title, children, isLoading, resource, validation, lang } = this.props;
+        const { title, children, isLoading, resource, validation, lang, resourceName } = this.props;
         const basePath = this.getBasePath();
         return (
             <Card style={{ margin: isSmallScreen() ? '0.5em' : '2em', opacity: isLoading ? 0.8 : 1 }}>
                 <CardActions style={{ zIndex: 2, display: 'inline-block', float: 'right' }}>
                     <ListButton lang={lang} basePath={basePath} />
                 </CardActions>
-                <CardTitle title={<Title title={title} defaultTitle={`${lang && lang == "ar"? "إنشاء" :"Create"} ${inflection.humanize(inflection.singularize(resource))}`} />} />
+                <CardTitle title={<Title title={title} defaultTitle={`${lang && lang == "ar"? "إنشاء" :"Create"} ${!!resourceName ? resourceName : inflection.humanize(inflection.singularize(resource))}`} />} />
                 <RecordForm
                     lang={lang}
                     onSubmit={this.handleSubmit}
