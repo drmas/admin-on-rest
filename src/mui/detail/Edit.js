@@ -61,7 +61,7 @@ export class Edit extends Component {
 
         return (
             <Card style={{ margin: isSmallScreen() ? '0.5em' : '2em', opacity: isLoading ? 0.8 : 1 }}>
-                <CardActions style={{ zIndex: 2, display: 'inline-block', float: 'right' }}>
+                <CardActions style={{ zIndex: 2, display: 'inline-block', float: lang == "ar" ? 'left' :'right' }}>
                     {hasShow && <ShowButton lang={lang} basePath={basePath} record={data} />}
                     <ListButton lang={lang} basePath={basePath} />
                     {hasDelete && <DeleteButton lang={lang} basePath={basePath} record={data} />}
