@@ -80,7 +80,7 @@ export class Pagination extends Component {
     }
 
     render() {
-        const { page, perPage, total } = this.props;
+        const { page, perPage, total, lang } = this.props;
         if (total === 0) return null;
         const offsetEnd = Math.min(page * perPage, total);
         const offsetBegin = Math.min((page - 1) * perPage + 1, offsetEnd);
