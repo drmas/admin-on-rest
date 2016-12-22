@@ -134,7 +134,7 @@ export class List extends Component {
                     basePath,
                     setSort: this.setSort,
                 })}
-                <Pagination lang={}resource={resource} page={parseInt(query.page, 10)} perPage={parseInt(query.perPage, 10)} total={total} setPage={this.setPage} />
+                <Pagination lang={lang} resource={resource} page={parseInt(query.page, 10)} perPage={parseInt(query.perPage, 10)} total={total} setPage={this.setPage} />
             </Card>
         );
     }
