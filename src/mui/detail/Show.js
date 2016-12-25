@@ -42,7 +42,7 @@ export class Show extends Component {
     }
 
     render() {
-        const { title, children, id, data, isLoading, resource, hasDelete, hasEdit } = this.props;
+        const { title, children, id, data, isLoading, resource, hasDelete, hasEdit, lang } = this.props;
         const basePath = this.getBasePath();
 
         return (
