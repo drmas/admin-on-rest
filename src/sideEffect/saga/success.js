@@ -11,12 +11,12 @@ export default (type, resource, payload, response) => {
     case CRUD_UPDATE:
         return [
             showNotification('Element updated'),
-            push(payload.basePath),
+            push(`${payload.basePath}/${response.id}`),
         ];
     case CRUD_CREATE:
         return [
             showNotification('Element created'),
-            push(`${payload.basePath}`),
+            push(`${payload.basePath}/${response.id}`),
         ];
     case CRUD_DELETE:
         return [
