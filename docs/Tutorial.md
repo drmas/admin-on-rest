@@ -314,7 +314,7 @@ There is not much to configure in a deletion view. To add removal abilities to a
 
 ```jsx
 // in src/App.js
-import { Delete } from 'admin-on-rest';
+import { Delete } from 'admin-on-rest/lib/mui';
 
 const App = () => (
     <Admin restClient={jsonServerRestClient('http://jsonplaceholder.typicode.com')}>
